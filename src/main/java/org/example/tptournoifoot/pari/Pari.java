@@ -1,4 +1,4 @@
-package org.example.tptournoifoot;
+package org.example.tptournoifoot.pari;
 
 public interface Pari {
 }
