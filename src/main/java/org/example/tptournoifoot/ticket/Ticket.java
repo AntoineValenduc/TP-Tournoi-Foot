@@ -1,16 +1,17 @@
 package org.example.tptournoifoot.ticket;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.tptournoifoot.match.Match;
+import org.example.tptournoifoot.supporter.Supporter;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Ticket {
     @Id
@@ -28,4 +29,12 @@ public class Ticket {
 
     @Column(name = "prix")
     private double prix;
+
+    @ManyToOne
+    @JoinColumn(name = "match_id")
+    private Match match;
+
+    @ManyToOne
+    @JoinColumn(name = "supporter_id")
+    private Supporter supporter;
 }

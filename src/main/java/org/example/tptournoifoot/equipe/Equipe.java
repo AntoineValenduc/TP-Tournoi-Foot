@@ -4,6 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.tptournoifoot.entraineur.Entraineur;
+import org.example.tptournoifoot.joueur.Joueur;
+import org.example.tptournoifoot.match.Match;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -27,4 +33,15 @@ public class Equipe {
 
     @Column(name = "classementGeneral")
     private String classementGeneral;
+
+    @OneToOne
+    @JoinColumn(name = "entraineur_id")
+    private Entraineur entraineur;
+
+    @OneToMany(mappedBy = "equipe")
+    private List<Joueur> joueurs = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "equipes")
+    private List<Match> matchs = new ArrayList<>();
+
 }
