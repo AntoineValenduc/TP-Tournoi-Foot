@@ -15,7 +15,7 @@ public class StadeController {
     private StadeService stadeService;
 
     @GetMapping
-    public List<Stade> getAllStades() {
+    public List<Stade> findAll() {
         return stadeService.findAll();
     }
 
