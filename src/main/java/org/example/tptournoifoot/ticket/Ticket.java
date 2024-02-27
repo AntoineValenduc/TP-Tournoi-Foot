@@ -29,3 +29,4 @@ public class Ticket {
     @Column(name = "prix")
     private double prix;
 }
+//ManyToOne Tickets  correspond a un supporter

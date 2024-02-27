@@ -22,3 +22,4 @@ public class Supporter {
     @Column(name = "prenom")
     private String prenom;
 }
+//OneToMany supporter peut avoir plusieurs tickets
