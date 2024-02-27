@@ -15,7 +15,7 @@ public class SupporterService {
         this.supporterRepository = supporterRepository;
     }
     // tout les supporters
-    public List<Supporter> findAll() {
+    public List<Supporter> findAllSupporter() {
         return supporterRepository.findAll();
     }
 
