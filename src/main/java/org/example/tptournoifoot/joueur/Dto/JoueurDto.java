@@ -1,7 +1,7 @@
-package org.example.tptournoifoot.joueur;
+package org.example.tptournoifoot.joueur.Dto;
 
 import lombok.Data;
-import org.example.tptournoifoot.equipe.EquipeDto;
+import org.example.tptournoifoot.equipe.Dto.EquipeDto;
 
 @Data
 public class JoueurDto {

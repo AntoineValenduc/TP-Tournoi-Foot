@@ -1,8 +1,7 @@
-package org.example.tptournoifoot.entraineur;
+package org.example.tptournoifoot.entraineur.Dto;
 
 import lombok.Data;
-import org.example.tptournoifoot.equipe.Equipe;
-import org.example.tptournoifoot.equipe.EquipeDto;
+import org.example.tptournoifoot.equipe.Dto.EquipeDto;
 
 @Data
 public class EntraineurDto {

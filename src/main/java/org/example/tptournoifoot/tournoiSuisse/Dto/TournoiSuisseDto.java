@@ -1,7 +1,7 @@
-package org.example.tptournoifoot.tournoiSuisse;
+package org.example.tptournoifoot.tournoiSuisse.Dto;
 
 import lombok.Data;
-import org.example.tptournoifoot.match.MatchDto;
+import org.example.tptournoifoot.match.Dto.MatchDto;
 
 import java.util.ArrayList;
 import java.util.List;

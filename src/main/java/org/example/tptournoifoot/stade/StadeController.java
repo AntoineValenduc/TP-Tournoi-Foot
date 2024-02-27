@@ -38,4 +38,5 @@ public class StadeController {
     public boolean gererFluxEntrants(@PathVariable Integer id, @RequestParam int nombrePersonnes) {
         return stadeService.gererFluxEntrants(id, nombrePersonnes);
     }
+
 }

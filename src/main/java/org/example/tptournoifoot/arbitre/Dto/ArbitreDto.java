@@ -1,8 +1,7 @@
-package org.example.tptournoifoot.arbitre;
+package org.example.tptournoifoot.arbitre.Dto;
 
 import lombok.Data;
-import org.example.tptournoifoot.match.Match;
-import org.example.tptournoifoot.match.MatchDto;
+import org.example.tptournoifoot.match.Dto.MatchDto;
 
 @Data
 public class ArbitreDto {

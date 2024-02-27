@@ -1,7 +1,7 @@
-package org.example.tptournoifoot.supporter;
+package org.example.tptournoifoot.supporter.Dto;
 
 import lombok.Data;
-import org.example.tptournoifoot.ticket.TicketDto;
+import org.example.tptournoifoot.ticket.Dto.TicketDto;
 
 import java.util.ArrayList;
 import java.util.List;
