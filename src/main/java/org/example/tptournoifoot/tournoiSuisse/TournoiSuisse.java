@@ -10,7 +10,6 @@ import org.example.tptournoifoot.match.Match;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Getter
 @Setter

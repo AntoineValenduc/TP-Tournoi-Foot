@@ -38,3 +38,4 @@ public class Ticket {
     @JoinColumn(name = "supporter_id")
     private Supporter supporter;
 }
+//ManyToOne Tickets  correspond a un supporter

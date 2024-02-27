@@ -29,3 +29,4 @@ public class Supporter {
     @OneToMany(mappedBy = "supporter")
     private List<Ticket> tickets = new ArrayList<>();
 }
+//OneToMany supporter peut avoir plusieurs tickets
