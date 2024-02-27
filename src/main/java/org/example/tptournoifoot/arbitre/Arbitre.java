@@ -2,14 +2,12 @@ package org.example.tptournoifoot.arbitre;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.tptournoifoot.match.Match;
 
 @Entity
 @Getter
@@ -28,4 +26,7 @@ public class Arbitre {
 
     @Column
     private String prenom;
+
+    @OneToOne(mappedBy = "arbitre")
+    private Match match;
 }

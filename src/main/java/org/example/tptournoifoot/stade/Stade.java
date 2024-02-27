@@ -7,6 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.tptournoifoot.match.Match;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,4 +32,7 @@ public class Stade {
 
     @Column
     private int capacite;
+
+    @OneToMany(mappedBy = "stade")
+    private List<Match> matchs = new ArrayList<>();
 }

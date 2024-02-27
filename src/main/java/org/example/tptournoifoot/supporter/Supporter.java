@@ -1,13 +1,14 @@
 package org.example.tptournoifoot.supporter;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.tptournoifoot.ticket.Ticket;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,4 +25,7 @@ public class Supporter {
 
     @Column(name = "prenom")
     private String prenom;
+
+    @OneToMany(mappedBy = "supporter")
+    private List<Ticket> tickets = new ArrayList<>();
 }
