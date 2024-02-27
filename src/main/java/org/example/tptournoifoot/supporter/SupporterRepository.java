@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface SupporterRepository extends JpaRepository<Supporter, Integer> {
 
-    Optional<Supporter> findByNomSupporter(String nom);
+    Optional<Supporter> findByNom(String nom);
 }
