@@ -14,18 +14,18 @@ public class EquipeController {
     private EquipeService equipeService;
 
     @GetMapping
-    public List<Equipe> getAllEquipes() {
+    public List<EquipeDto> getAllEquipes() {
         return equipeService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Equipe> getEquipeById(@PathVariable Integer id) {
+    public Optional<EquipeDto> getEquipeById(@PathVariable Integer id) {
         return equipeService.getEquipeById(id);
     }
 
     @PostMapping
-    public Equipe saveEquipe(@RequestBody Equipe equipe) {
-        return equipeService.save(equipe);
+    public void saveEquipe(@RequestBody EquipeDto equipe) {
+        equipeService.save(equipe);
     }
 
     @DeleteMapping("/{id}")

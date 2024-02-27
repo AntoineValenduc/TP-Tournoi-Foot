@@ -39,5 +39,5 @@ Avec un système de réservation de tickets pour les matchs, ainsi que de paris.
 
 - Réserver un ou plusieurs ticket(s) pour un supporter.
 - Réserver un ticket à partir du match
-- Faire un pari sur la réussite d'une équipe lors d'un match
+- Faire un pari sur la réussite d'une équipe lors d'un match 
 - Système de quotation des équipes pour définir la valeur du pari
