@@ -47,7 +47,7 @@ public class SupporterService {
 
     // GET Par nom du supporter
     public Supporter findByNomSupporter(String nom){
-        return supporterRepository.findByNomSupporter(nom).orElseThrow(
+        return supporterRepository.findByNom(nom).orElseThrow(
                 ()-> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "Aucuns supporter trouvé avec pour nom" + nom
