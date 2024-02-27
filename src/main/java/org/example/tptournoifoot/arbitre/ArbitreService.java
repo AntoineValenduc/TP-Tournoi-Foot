@@ -3,7 +3,9 @@ package org.example.tptournoifoot.arbitre;
 import org.example.tptournoifoot.match.Match;
 import org.example.tptournoifoot.match.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +26,10 @@ public class ArbitreService {
         return arbitreRepository.findAll();
     }
 
-    public Optional<Arbitre> getArbitreById(Integer id) {
-        return arbitreRepository.findById(id);
+    public Arbitre findById(Integer id) {
+        return arbitreRepository.findById(id).orElseThrow(
+                () ->new ResponseStatusException(HttpStatus.NOT_FOUND, "Arbitre non trouvé")
+        );
     }
 
     public Arbitre save(Arbitre arbitre) {
