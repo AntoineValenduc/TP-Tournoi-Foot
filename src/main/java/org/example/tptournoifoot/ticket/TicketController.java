@@ -1,5 +1,7 @@
 package org.example.tptournoifoot.ticket;
 
+import org.example.tptournoifoot.match.MatchMapStruct;
+import org.example.tptournoifoot.supporter.SupporterMapStruct;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +23,21 @@ public class TicketController {
 
     //GET by id un ticket
     @GetMapping("/{id}")
-    public Ticket findTicketById(@PathVariable Integer id) {
-        return ticketService.findTicketById(id);
+    public TicketDto findTicketById(@PathVariable Integer id) {
+        Ticket ticket = ticketService.findTicketById(id);
+
+        TicketDto ticketDto = new TicketDto();
+
+        ticketDto.setId(ticket.getId());
+        ticketDto.setType(ticket.getType());
+        ticketDto.setNumero(ticket.getNumero());
+        ticketDto.setNumeroRange(ticket.getNumeroRange());
+        ticketDto.setPrix(ticket.getPrix());
+
+        ticketDto.setMatchDto(MatchMapStruct.INSTANCE.toDtoComplet(ticket.getMatch()));
+        ticketDto.setSupporterDto(SupporterMapStruct.INSTANCE.toDtoComplet(ticket.getSupporter()));
+
+        return ticketDto;
     }
 
     //DELETE ticket by ID

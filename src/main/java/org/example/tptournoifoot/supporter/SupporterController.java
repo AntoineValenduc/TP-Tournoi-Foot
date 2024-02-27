@@ -1,5 +1,6 @@
 package org.example.tptournoifoot.supporter;
 
+import org.example.tptournoifoot.ticket.TicketMapStruct;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +22,21 @@ public class SupporterController {
 
     //GET by id un supporter
     @GetMapping("/{id}")
-    public Supporter findSupporterById(@PathVariable Integer id){
-        return supporterService.findSupporterById(id);
+    public SupporterDto findSupporterById(@PathVariable Integer id){
+        Supporter supporter = supporterService.findSupporterById(id);
+
+        SupporterDto supporterDto = new SupporterDto();
+
+        supporterDto.setId(supporter.getId());
+        supporterDto.setNom(supporter.getNom());
+        supporterDto.setPrenom(supporter.getPrenom());
+        supporterDto.setTicketsDto(
+                supporter.getTickets().stream().map(
+                        TicketMapStruct.INSTANCE::toDtoComplet
+                ).toList()
+        );
+
+        return supporterDto;
     }
 
     // DELETE Supporter by id
