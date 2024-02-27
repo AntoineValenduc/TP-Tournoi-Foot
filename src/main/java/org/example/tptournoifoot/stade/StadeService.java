@@ -1,7 +1,9 @@
 package org.example.tptournoifoot.stade;
 
 import org.example.tptournoifoot.match.Match;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 
 import java.util.List;
@@ -22,9 +24,15 @@ public class StadeService {
         return stadeRepository.findAll();
     }
 
-    public Optional<Stade>getStadeById(Integer id)
+
+    public Stade findById(Integer id)
     {
-        return stadeRepository.findById(id);
+        return stadeRepository.findById(id).orElseThrow(
+                ()-> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Stade non trouvé"
+                )
+        );
     }
 
     public Stade save (Stade stade)
