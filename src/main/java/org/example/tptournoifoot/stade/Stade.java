@@ -22,7 +22,7 @@ property = "id")
 public class Stade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id ;
+    private Integer id;
 
     @Column
     private String nom;
