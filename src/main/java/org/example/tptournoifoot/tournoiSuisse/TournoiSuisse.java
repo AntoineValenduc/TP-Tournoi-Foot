@@ -1,4 +1,4 @@
-package org.example.tptournoifoot.TournoiSuisse;
+package org.example.tptournoifoot.tournoiSuisse;
 
 import jakarta.persistence.*;
 import lombok.Getter;
