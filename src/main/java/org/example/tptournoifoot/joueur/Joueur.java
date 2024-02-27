@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.tptournoifoot.equipe.Equipe;
 
 @Entity
 @NoArgsConstructor
@@ -27,5 +28,9 @@ public class Joueur {
 
     @Column(name = "numero")
     private int numero;
+
+    @ManyToOne
+    @JoinColumn(name = "equipe_id")
+    private Equipe equipe;
 
 }

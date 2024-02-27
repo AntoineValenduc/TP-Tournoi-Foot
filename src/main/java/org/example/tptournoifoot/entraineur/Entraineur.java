@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.tptournoifoot.equipe.Equipe;
 
 @Entity
 @NoArgsConstructor
@@ -24,4 +25,7 @@ public class Entraineur {
 
     @Column(name = "prenom")
     private String prenom;
+
+    @OneToOne(mappedBy = "entraineur")
+    private Equipe equipe;
 }
