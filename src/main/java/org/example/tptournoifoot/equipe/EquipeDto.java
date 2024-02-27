@@ -18,4 +18,5 @@ public class EquipeDto {
     private EntraineurDto entraineurDto;
     private List<JoueurDto> joueursDto = new ArrayList<>();
     private List<MatchDto> matchsDto = new ArrayList<>();
+
 }
