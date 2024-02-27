@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
 property = "id")
-public class stade {
+public class Stade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;

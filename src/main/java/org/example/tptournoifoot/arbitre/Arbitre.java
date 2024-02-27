@@ -16,7 +16,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
-public class arbitre {
+public class Arbitre {
     @Id
     @GeneratedValue
     private Integer id;
