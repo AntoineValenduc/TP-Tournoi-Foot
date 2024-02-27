@@ -16,7 +16,7 @@ public class TicketService {
     }
 
     //GET tout les tickets
-    public List<Ticket> findAllMatch() {
+    public List<Ticket> findAllTicket() {
         return ticketRepository.findAll();
     }
 
