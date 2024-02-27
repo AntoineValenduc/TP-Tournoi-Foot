@@ -1,5 +1,6 @@
 package org.example.tptournoifoot.stade;
 
+import org.example.tptournoifoot.match.MatchMapStruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,13 +15,28 @@ public class StadeController {
     private StadeService stadeService;
 
     @GetMapping
-    public List<Stade> getAllStades() {
+    public List<Stade> findAll() {
         return stadeService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Stade> getStadeById(@PathVariable Integer id) {
-        return stadeService.getStadeById(id);
+    public StadeDto findById(@PathVariable Integer id){
+        Stade stade = stadeService.findById(id);
+
+        StadeDto stadeDto = new StadeDto();
+
+        stadeDto.setId(stade.getId());
+        stadeDto.setNom(stade.getNom());
+        stadeDto.setVille(stade.getVille());
+        stadeDto.setCapacite(stade.getCapacite());
+        stadeDto.setMatchsDto(
+                stade.getMatchs().stream().map(
+                        MatchMapStruct.INSTANCE::toDtoComplet
+                ).toList()
+        );
+
+        return stadeDto;
+
     }
 
     @PostMapping
