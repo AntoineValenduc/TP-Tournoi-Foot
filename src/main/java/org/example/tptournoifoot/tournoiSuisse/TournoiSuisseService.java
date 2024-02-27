@@ -43,12 +43,15 @@ public class TournoiSuisseService {
 
 
     }
-    public void deleteById(Integer id) {
-        TournoiSuisse tournoiSuisse = this.findById(id);
+    public void delete(TournoiSuisse tournoiSuisse) {
+        this.findById(tournoiSuisse.getId());
         tournoiSuisseRepository.delete(tournoiSuisse);
     }
 
     public TournoiSuisse update(TournoiSuisse tournoiSuisse) {
         return tournoiSuisseRepository.save(tournoiSuisse);
+    }
+    public List<TournoiSuisse> findAll() {
+        return tournoiSuisseRepository.findAll();
     }
 }

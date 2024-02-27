@@ -2,6 +2,7 @@ package org.example.tptournoifoot.entraineur;
 
 import org.apache.coyote.BadRequestException;
 import org.example.tptournoifoot.entraineur.exception.EntraineurNotFoundException;
+import org.example.tptournoifoot.tournoiSuisse.TournoiSuisse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,12 +36,15 @@ public class EntraineurService {
     public Entraineur findById(Integer id){
         return entraineurRepository.findById(id).orElseThrow(EntraineurNotFoundException::new);
     }
-    public void deleteById(Integer id) {
-        Entraineur entraineur = this.findById(id);
+    public void delete(Entraineur entraineur) {
+        this.findById(entraineur.getId());
         entraineurRepository.delete(entraineur);
     }
 
     public Entraineur update(Entraineur entraineur) {
         return entraineurRepository.save(entraineur);
+    }
+    public List<Entraineur> findAll() {
+        return entraineurRepository.findAll();
     }
 }

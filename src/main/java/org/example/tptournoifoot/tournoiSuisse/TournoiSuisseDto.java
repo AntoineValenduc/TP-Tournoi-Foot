@@ -13,5 +13,5 @@ public class TournoiSuisseDto {
     private String classement;
     private boolean equipeQualifier;
     private boolean equipeDisqualifier;
-    private List<MatchDto> matchsDto = new ArrayList<>();
+    private List<MatchDto> matchs = new ArrayList<>();
 }
