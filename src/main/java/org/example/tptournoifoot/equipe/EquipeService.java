@@ -1,10 +1,12 @@
 package org.example.tptournoifoot.equipe;
 
-import org.example.tptournoifoot.stade.Stade;
+
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class EquipeService {
     private final EquipeRepository equipeRepository;
     public EquipeService(EquipeRepository equipeRepository)
