@@ -1,10 +1,6 @@
 package org.example.tptournoifoot.stade;
 
-import org.example.tptournoifoot.match.Match;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -18,21 +14,17 @@ public class StadeService {
     this.stadeRepository = stadeRepository;
 
     }
-
     public List<Stade>findAll()
     {
         return stadeRepository.findAll();
     }
 
+    public Stade findById(Integer id) {
+        return stadeRepository.findById(id).orElse(null);
+    }
 
-    public Stade findById(Integer id)
-    {
-        return stadeRepository.findById(id).orElseThrow(
-                ()-> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Stade non trouvé"
-                )
-        );
+    public Stade findByNomAndVille(String nom, String ville) {
+        return stadeRepository.findByNomAndVille(nom, ville);
     }
 
     public Stade save (Stade stade)
@@ -55,6 +47,23 @@ public class StadeService {
             }
         }
         return false; // Capacité insuffisante ou dépassement de la capacité maximale
+    }
+
+    // Méthode pour obtenir la capacité utilisée (nombre de supporters déjà présents)
+    public int getCapaciteUtilisee() {
+        List<Stade> stades = stadeRepository.findAll();
+        return stades.stream()
+                .mapToInt(Stade::getCapacite)
+                .sum();
+    }
+
+    // Méthode pour mettre à jour la capacité utilisée
+    public void updateCapaciteUtilisee() {
+        List<Stade> stades = stadeRepository.findAll();
+        int capaciteUtilisee = stades.stream()
+                .mapToInt(Stade::getCapacite)
+                .sum();
+        System.out.println("Total Capacity Used: " + capaciteUtilisee);
     }
 }
 
