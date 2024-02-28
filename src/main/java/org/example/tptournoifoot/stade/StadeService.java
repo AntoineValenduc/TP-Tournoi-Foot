@@ -53,7 +53,7 @@ public class StadeService {
     public int getCapaciteUtilisee() {
         List<Stade> stades = stadeRepository.findAll();
         return stades.stream()
-                .mapToInt(Stade::getCapacite)
+                .mapToInt(Stade::getCapaciteTotal)
                 .sum();
     }
 
@@ -61,7 +61,7 @@ public class StadeService {
     public void updateCapaciteUtilisee() {
         List<Stade> stades = stadeRepository.findAll();
         int capaciteUtilisee = stades.stream()
-                .mapToInt(Stade::getCapacite)
+                .mapToInt(Stade::getCapaciteTotal)
                 .sum();
         System.out.println("Total Capacity Used: " + capaciteUtilisee);
     }

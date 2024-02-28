@@ -4,6 +4,8 @@ package org.example.tptournoifoot.ticket;
 import org.example.tptournoifoot.match.Match;
 import org.example.tptournoifoot.match.MatchService;
 
+import org.example.tptournoifoot.stade.Stade;
+import org.example.tptournoifoot.stade.StadeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,16 +17,11 @@ public class TicketService {
     private final TicketRepository ticketRepository;
 
     private final MatchService matchService;
-
-    // constructor
-    public TicketService(TicketRepository ticketRepository, MatchService matchService) {
-        this.ticketRepository = ticketRepository;
-        this.matchService = matchService;
     private final StadeService stadeService;
 
-    @Autowired
-    public TicketService(TicketRepository ticketRepository, StadeService stadeService) {
+    public TicketService(TicketRepository ticketRepository, StadeService stadeService, MatchService matchService) {
         this.ticketRepository = ticketRepository;
+        this.matchService = matchService;
         this.stadeService = stadeService;
     }
 
@@ -32,7 +29,7 @@ public class TicketService {
         Stade stade = stadeService.findByNomAndVille("Arena", "Paris");
 
         if (stade != null) {
-            int capaciteRestante = stade.getCapacite() - stadeService.getCapaciteUtilisee();
+            int capaciteRestante = stade.getCapaciteTotal()- stadeService.getCapaciteUtilisee();
             int capaciteMaxParCategorie = determineCapaciteMaxParCategorie(categorie);
 
             if (nombreTickets <= capaciteRestante && nombreTickets <= 50000 && nombreTickets <= capaciteMaxParCategorie) {
