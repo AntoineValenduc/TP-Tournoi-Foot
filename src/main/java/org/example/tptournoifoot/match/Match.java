@@ -35,7 +35,7 @@ public class Match {
     private String resultat;
 
     @Column
-    private String duree;
+    private int placesDisponible;
 
     @OneToOne
     @JoinColumn(name = "arbitre_id")

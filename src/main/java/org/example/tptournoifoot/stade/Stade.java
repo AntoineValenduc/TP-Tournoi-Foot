@@ -31,7 +31,7 @@ public class Stade {
     private String ville;
 
     @Column
-    private int capacite;
+    private int capaciteTotal;
 
     @OneToMany(mappedBy = "stade")
     private List<Match> matchs = new ArrayList<>();

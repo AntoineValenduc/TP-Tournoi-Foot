@@ -3,6 +3,7 @@ package org.example.tptournoifoot.match;
 import org.example.tptournoifoot.ticket.TicketMapStruct;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,6 @@ public class MatchController {
         matchDto.setId(match.getId());
         matchDto.setDateHoraire(match.getDateHoraire());
         matchDto.setResultat(match.getResultat());
-        matchDto.setDuree(match.getDuree());
         // besoin mapstruct de l'arbitre pour continuer :)
         // besoin mapstruct du stade pour continuer :)
         // besoin mapstruct de tournoiSuisse pour continuer :)
@@ -49,6 +49,11 @@ public class MatchController {
 
     }
 
+    @GetMapping
+    public List<Match>MatchsByDate(@RequestParam("date") LocalDate date) {
+        return matchService.MatchsByDate(date);
+    }
+
     //DELETE by id un match
     @DeleteMapping("/{id}")
     public void deleMatchById(@PathVariable Integer id){
@@ -57,8 +62,8 @@ public class MatchController {
 
     //PUT (update) match
     @PutMapping
-    public Match updateMatch(@RequestBody Match match){
-        return matchService.updateMatch(match);
+    public Match updateMatch(@RequestBody Match match, Integer id){
+        return matchService.updateMatch(match,id);
     }
 
     //POST
