@@ -2,6 +2,8 @@ package org.example.tptournoifoot.stade;
 
 import org.example.tptournoifoot.match.MatchMapStruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,5 +55,15 @@ public class StadeController {
     @PostMapping("/{id}/flux-entrants")
     public boolean gererFluxEntrants(@PathVariable Integer id, @RequestParam int nombrePersonnes) {
         return stadeService.gererFluxEntrants(id, nombrePersonnes);
+    }
+    // Reservation d'une places dans le stade
+    @PostMapping("/stades/{id}/tickets")
+    public ResponseEntity<String> reserverTicketStade(@PathVariable Integer id) {
+        boolean reservationReussie = stadeService.reserverTicketMatch(id);
+        if (reservationReussie) {
+            return new ResponseEntity<>("Réservation réussie.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Impossible de réserver. Pas de places disponibles ou stade introuvable.", HttpStatus.BAD_REQUEST);
+        }
     }
 }

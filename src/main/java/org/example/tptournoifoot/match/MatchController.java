@@ -1,8 +1,13 @@
 package org.example.tptournoifoot.match;
 
 import org.example.tptournoifoot.ticket.TicketMapStruct;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -65,5 +70,16 @@ public class MatchController {
     @PostMapping
     public Match saveMatch(@RequestBody Match match){
         return matchService.saveMatch(match);
+    }
+    @GetMapping("/matchs")
+    public List<Match>MatchsByDate(@RequestParam("date") LocalDate date) {
+        return matchService.MatchsByDate(date);
+    }
+
+    @PostMapping("/matchs")
+    public Match creerMatch(
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @RequestParam("id") Integer id) {
+        return matchService.creerMatch(date, id);
     }
 }

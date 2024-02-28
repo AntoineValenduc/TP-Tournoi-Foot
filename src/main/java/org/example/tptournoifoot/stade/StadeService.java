@@ -56,6 +56,20 @@ public class StadeService {
         }
         return false; // Capacité insuffisante ou dépassement de la capacité maximale
     }
+        public boolean reserverTicketMatch(Integer id) {
+            Stade stade = stadeRepository.findById(id).orElse(null);
+            if(stade == null){
+                return false;
+            }
+            int capacite = stade.getCapacite();
+            if(capacite<= 0){
+                return false;
+            }
+            stade.setCapacite(capacite -1);
+            stadeRepository.save(stade);
+            return true;
+        }
 }
+
 
 

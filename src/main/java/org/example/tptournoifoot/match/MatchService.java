@@ -1,18 +1,23 @@
 package org.example.tptournoifoot.match;
 
 
+import org.example.tptournoifoot.stade.Stade;
+import org.example.tptournoifoot.stade.StadeRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class MatchService {
     private final MatchRepository matchRepository;
+    private final StadeRepository stadeRepository;
 
-    public MatchService(MatchRepository matchRepository) {
+    public MatchService(MatchRepository matchRepository, StadeRepository stadeRepository) {
         this.matchRepository = matchRepository;
+        this.stadeRepository = stadeRepository;
     }
 
     // GET tout les matchs
@@ -45,5 +50,14 @@ public class MatchService {
     public Match updateMatch(Match match) {
         return matchRepository.save(match);
     }
-
+    public List<Match> MatchsByDate(LocalDate date) {
+        return matchRepository.findByDate(date);
+    }
+    public Match creerMatch(LocalDate date, Integer id) {
+        Stade stade = stadeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Stade non trouvé"));
+        Match match = new Match();
+        match.setDateHoraire(date);
+        match.setStade(stade);
+        return matchRepository.save(match);
+    }
 }
