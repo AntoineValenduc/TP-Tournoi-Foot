@@ -13,8 +13,11 @@ public class TournoiSuisseService {
 
     private final TournoiSuisseRepository tournoiSuisseRepository;
 
-    public TournoiSuisseService(TournoiSuisseRepository tournoiSuisseRepository) {
+    private final SystemeSuisse systemeSuisse;
+
+    public TournoiSuisseService(TournoiSuisseRepository tournoiSuisseRepository, SystemeSuisse systemeSuisse) {
         this.tournoiSuisseRepository = tournoiSuisseRepository;
+        this.systemeSuisse = systemeSuisse;
     }
 
 
@@ -53,5 +56,9 @@ public class TournoiSuisseService {
     }
     public List<TournoiSuisse> findAll() {
         return tournoiSuisseRepository.findAll();
+    }
+
+    public void creationTournoi() throws BadRequestException {
+        tournoiSuisseRepository.saveAndFlush(TournoiSuisseMapStruct.INSTANCE.toEntityComplet(systemeSuisse.creationTournoi()));
     }
 }

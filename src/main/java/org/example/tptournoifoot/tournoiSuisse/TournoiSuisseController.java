@@ -43,8 +43,14 @@ public class TournoiSuisseController {
     public void deleteById(@RequestBody TournoiSuisse tournoiSuisse){
         tournoiSuisseService.delete(tournoiSuisse);
     }
+
     @GetMapping
     public List<TournoiSuisse> findAll(){
         return tournoiSuisseService.findAll();
+    }
+
+    @PostMapping("/creationTournoi")
+    public void creationTournoi() throws BadRequestException {
+        tournoiSuisseService.creationTournoi();
     }
 }

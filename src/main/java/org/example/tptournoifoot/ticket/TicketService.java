@@ -6,6 +6,7 @@ import org.example.tptournoifoot.match.MatchService;
 
 import org.example.tptournoifoot.stade.Stade;
 import org.example.tptournoifoot.stade.StadeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -18,6 +19,7 @@ public class TicketService {
 
     private final MatchService matchService;
     private final StadeService stadeService;
+
 
     public TicketService(TicketRepository ticketRepository, StadeService stadeService, MatchService matchService) {
         this.ticketRepository = ticketRepository;
