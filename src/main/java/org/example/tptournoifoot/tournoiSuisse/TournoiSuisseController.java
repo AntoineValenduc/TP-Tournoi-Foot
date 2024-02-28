@@ -2,10 +2,12 @@ package org.example.tptournoifoot.tournoiSuisse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.coyote.BadRequestException;
+import org.example.tptournoifoot.equipe.Equipe;
 import org.example.tptournoifoot.match.MatchDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tournoiSuisse")
@@ -46,5 +48,10 @@ public class TournoiSuisseController {
     @GetMapping
     public List<TournoiSuisse> findAll(){
         return tournoiSuisseService.findAll();
+    }
+
+    @GetMapping("/tournoi/{id}/classement")
+    public Map<Equipe, Integer> getClassement(@PathVariable Integer id) {
+        return tournoiSuisseService.calculerClassement(id);
     }
 }
