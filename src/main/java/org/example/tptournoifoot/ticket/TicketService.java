@@ -29,8 +29,8 @@ public class TicketService {
     // Sauvegarde
     public Ticket save(Ticket ticket) {
         Match match = matchService.findMatchById(ticket.getMatch().getId());
-        int placesDisponibles = match.getStade().getPlacesDispo();
-        match.setPlacesDisponibles(placesDisponibles - ticket.getStade().getCapacite());
+        int placesDisponibles = match.getPlacesDisponibles();
+        match.setPlacesDisponibles(placesDisponibles - 1);
         matchService.updateMatch(match,match.getId());
         ticket.setMatch(match);
         return ticketRepository.save(ticket);

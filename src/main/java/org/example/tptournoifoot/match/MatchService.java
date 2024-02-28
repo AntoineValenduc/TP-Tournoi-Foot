@@ -14,10 +14,12 @@ import java.util.List;
 public class MatchService {
     private final MatchRepository matchRepository;
     private final StadeRepository stadeRepository;
+    private final Stade stade;
 
-    public MatchService(MatchRepository matchRepository, StadeRepository stadeRepository) {
+    public MatchService(MatchRepository matchRepository, StadeRepository stadeRepository, Stade stade) {
         this.matchRepository = matchRepository;
         this.stadeRepository = stadeRepository;
+        this.stade = stade;
     }
 
     // GET tout les matchs

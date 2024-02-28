@@ -57,13 +57,5 @@ public class StadeController {
         return stadeService.gererFluxEntrants(id, nombrePersonnes);
     }
     // Reservation d'une places dans le stade
-    @PostMapping("/{id}/tickets")
-    public ResponseEntity<String> reserverTicketStade(@PathVariable Integer id) {
-        boolean reservationReussie = stadeService.reserverTicketMatch(id);
-        if (reservationReussie) {
-            return new ResponseEntity<>("Réservation réussie.", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Impossible de réserver. Une erreur est survenue, le stade est introuvable ou il n'y a pas de places disponible", HttpStatus.BAD_REQUEST);
-        }
-    }
+
 }

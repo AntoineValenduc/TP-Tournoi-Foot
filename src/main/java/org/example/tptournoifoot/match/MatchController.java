@@ -3,6 +3,8 @@ package org.example.tptournoifoot.match;
 import org.example.tptournoifoot.ticket.TicketMapStruct;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -82,5 +84,14 @@ public class MatchController {
             @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
             @RequestParam("stade_id") Integer id) {
         return matchService.creerMatch(date, id);
+    }
+    @PostMapping("/{id}/tickets")
+    public ResponseEntity<String> reserverTicketStade(@PathVariable Integer id) {
+        boolean reservationReussie = matchService.reserverTicketMatch(id);
+        if (reservationReussie) {
+            return new ResponseEntity<>("Réservation réussie.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Impossible de réserver. Une erreur est survenue, le stade est introuvable ou il n'y a pas de places disponible", HttpStatus.BAD_REQUEST);
+        }
     }
 }
