@@ -52,8 +52,11 @@ public class TicketController {
     }
 
     @PostMapping
-    public Ticket saveTicket(@RequestBody Ticket ticket) {
-        return ticketService.saveTicket(ticket);
+
+    public Ticket save(@RequestBody Ticket ticket){
+        return ticketService.save(ticket);
+
+
     }
 
     @PostMapping("/purchase")
