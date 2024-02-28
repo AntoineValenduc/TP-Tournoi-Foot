@@ -1,10 +1,12 @@
 package org.example.tptournoifoot.stade;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 public interface StadeRepository extends JpaRepository<Stade, Integer> {
 
+    // Trouver le Stade avec son nom et sa ville
+    Stade findByNomAndVille(String nom, String ville);
 }
+
+
+

@@ -2,6 +2,8 @@ package org.example.tptournoifoot.ticket;
 
 import org.example.tptournoifoot.match.MatchMapStruct;
 import org.example.tptournoifoot.supporter.SupporterMapStruct;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,13 +17,11 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
-    //GET tout les tickets
     @GetMapping
-    public List<Ticket> findAllTicket(){
+    public List<Ticket> findAllTicket() {
         return ticketService.findAllTicket();
     }
 
-    //GET by id un ticket
     @GetMapping("/{id}")
     public TicketDto findTicketById(@PathVariable Integer id) {
         Ticket ticket = ticketService.findTicketById(id);
@@ -40,21 +40,58 @@ public class TicketController {
         return ticketDto;
     }
 
-    //DELETE ticket by ID
+    // DELETE ticket by ID
     @DeleteMapping("/{id}")
-    public void deleteTicketById(@PathVariable Integer id){
+    public void deleteTicketById(@PathVariable Integer id) {
         ticketService.deleteTicketById(id);
     }
 
-    // PUT ticket
     @PutMapping
-    public Ticket updateTicket(@RequestBody Ticket ticket){
+    public Ticket updateTicket(@RequestBody Ticket ticket) {
         return ticketService.updateTicket(ticket);
     }
 
-    // POST ticket
     @PostMapping
-    public Ticket saveTicket(@RequestBody Ticket ticket){
+    public Ticket saveTicket(@RequestBody Ticket ticket) {
         return ticketService.saveTicket(ticket);
     }
+
+    @PostMapping("/purchase")
+    public ResponseEntity<Ticket> acheterTickets(@RequestParam Integer nombreTickets,
+                                                 @RequestParam String categorie) {
+        Ticket ticketAchete = ticketService.acheterTickets(nombreTickets, categorie);
+
+        setCategorieAndPrice(ticketAchete, nombreTickets);
+
+        return new ResponseEntity<>(ticketAchete, HttpStatus.CREATED);
+    }
+
+    private void setCategorieAndPrice(Ticket ticket, int nombreTickets) {
+        if (nombreTickets <= 0) {
+            throw new IllegalArgumentException("Nombre de tickets invalide");
+        } else if (nombreTickets <= 5000) {
+            ticket.setCategorie("VIP");
+            ticket.setPrix(200.0);
+        } else if (nombreTickets <= 10000) {
+            ticket.setCategorie("A");
+            ticket.setPrix(100.0);
+        } else if (nombreTickets <= 20000) {
+            ticket.setCategorie("B");
+            ticket.setPrix(80.0);
+        } else {
+            ticket.setCategorie("C");
+            ticket.setPrix(60.0);
+        }
+    }
+    @GetMapping("/compare-tickets")
+    public void compareTicketsSold() {
+        int totalTicketsSoldVIP = 1000;
+        int totalTicketsSoldA = 10000;
+        int totalTicketsSoldB = 20000;
+        int totalTicketsSoldC = 15000;
+        int totalTicketsSoldPreviousYear = 33000;
+
+        ticketService.compareTicketsSold(totalTicketsSoldVIP, totalTicketsSoldA, totalTicketsSoldB, totalTicketsSoldC, totalTicketsSoldPreviousYear);
+    }
+
 }
