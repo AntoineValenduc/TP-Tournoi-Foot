@@ -28,7 +28,7 @@ public class StadeController {
         stadeDto.setId(stade.getId());
         stadeDto.setNom(stade.getNom());
         stadeDto.setVille(stade.getVille());
-        stadeDto.setCapacite(stade.getCapacite());
+        stadeDto.setCapacite(stade.getCapaciteTotal());
         stadeDto.setMatchsDto(
                 stade.getMatchs().stream().map(
                         MatchMapStruct.INSTANCE::toDtoComplet

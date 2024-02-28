@@ -30,7 +30,6 @@ public class MatchController {
         matchDto.setId(match.getId());
         matchDto.setDateHoraire(match.getDateHoraire());
         matchDto.setResultat(match.getResultat());
-        matchDto.setDuree(match.getDuree());
         // besoin mapstruct de l'arbitre pour continuer :)
         // besoin mapstruct du stade pour continuer :)
         // besoin mapstruct de tournoiSuisse pour continuer :)

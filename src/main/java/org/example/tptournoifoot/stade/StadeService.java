@@ -47,9 +47,9 @@ public class StadeService {
         Optional<Stade> optionalStade = stadeRepository.findById(idStade);
         if (optionalStade.isPresent()) {
             Stade stade = optionalStade.get();
-            int capaciteRestante = stade.getCapacite() - nombrePersonnes;
+            int capaciteRestante = stade.getCapaciteTotal() - nombrePersonnes;
             if (capaciteRestante >= 0 && capaciteRestante <= 50000) {
-                stade.setCapacite(capaciteRestante);
+                stade.setCapaciteTotal(capaciteRestante);
                 stadeRepository.save(stade);
                 return true; // Flux géré avec succès
             }
