@@ -18,22 +18,12 @@ public class TicketService {
     private final TicketRepository ticketRepository;
 
     private final MatchService matchService;
-
     private final StadeService stadeService;
 
-    // constructor
-    public TicketService(TicketRepository ticketRepository,
-                         MatchService matchService,
-                         StadeService stadeService) {
+
+    public TicketService(TicketRepository ticketRepository, StadeService stadeService, MatchService matchService) {
         this.ticketRepository = ticketRepository;
         this.matchService = matchService;
-        this.stadeService = stadeService;
-    }
-
-
-    @Autowired
-    public TicketService(TicketRepository ticketRepository, StadeService stadeService) {
-        this.ticketRepository = ticketRepository;
         this.stadeService = stadeService;
     }
 
@@ -41,7 +31,7 @@ public class TicketService {
         Stade stade = stadeService.findByNomAndVille("Arena", "Paris");
 
         if (stade != null) {
-            int capaciteRestante = stade.getCapaciteTotal() - stadeService.getCapaciteUtilisee();
+            int capaciteRestante = stade.getCapaciteTotal()- stadeService.getCapaciteUtilisee();
             int capaciteMaxParCategorie = determineCapaciteMaxParCategorie(categorie);
 
             if (nombreTickets <= capaciteRestante && nombreTickets <= 50000 && nombreTickets <= capaciteMaxParCategorie) {
