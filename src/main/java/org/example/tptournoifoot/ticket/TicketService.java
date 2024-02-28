@@ -1,5 +1,7 @@
 package org.example.tptournoifoot.ticket;
 
+import org.example.tptournoifoot.match.Match;
+import org.example.tptournoifoot.match.MatchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,10 +11,12 @@ import java.util.List;
 @Service
 public class TicketService {
     private final TicketRepository ticketRepository;
+    private final MatchService matchService;
 
     // constructor
-    public TicketService(TicketRepository ticketRepository) {
+    public TicketService(TicketRepository ticketRepository, MatchService matchService) {
         this.ticketRepository = ticketRepository;
+        this.matchService = matchService;
     }
 
     //GET tout les tickets
@@ -21,9 +25,15 @@ public class TicketService {
     }
 
     // Sauvegarde
-    public Ticket saveTicket(Ticket ticket) {
+    public Ticket save(Ticket ticket) {
+        Match match = matchService.findMatchById(ticket.getMatch().getId());
+        int placesDisponibles = match.getPlacesDisponible();
+        match.setPlacesDisponible(placesDisponibles - 1);
+        matchService.updateMatch(match,match.getId());
+        ticket.setMatch(match);
         return ticketRepository.save(ticket);
     }
+
 
     // GET By id
     public Ticket findTicketById(Integer id){
