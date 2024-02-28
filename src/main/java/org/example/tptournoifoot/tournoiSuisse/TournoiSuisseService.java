@@ -75,17 +75,18 @@ public class TournoiSuisseService {
         // itére sur chaque match dans la liste des matchs
         for (Match match : matchs) {
             // prend le résultat du match, qui est une chaîne de caractères
-            // (par exemple, "2-1"), et le divise en deux à l'aide du tiret ("-") comme séparateur.
-            // Cela produit un tableau de deux chaînes, où scores[0] contient le score de la première équipe et scores[1]
-            // le score de la deuxième équipe.
+            // (par exemple, "2-1"), et on le sépare avec un ("-")
+            // Cela produit un tableau de deux chaînes, où scores[0] contient le score de equipe1 et scores[1]
+            // le score de equipe2.
             String[] scores = match.getResultat().split("-");
 
-            // convertissent les scores de chaînes de caractères en entiers
+            // convertissent les scores de chaînes de caractères en entier
             // pour permettre des comparaisons numériques
+
             int scoreEquipe1 = Integer.parseInt(scores[0]);
             int scoreEquipe2 = Integer.parseInt(scores[1]);
 
-            //Initialisation des deux équipes
+            //Initialisation des deux équipes, démarre à 0
             Equipe equipe1 = match.getEquipes().get(0);
             Equipe equipe2 = match.getEquipes().get(1);
 
