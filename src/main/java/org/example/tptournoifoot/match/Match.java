@@ -45,6 +45,8 @@ public class Match {
     @JoinColumn(name = "stade_id")
     private Stade stade;
 
+    private int placesDisponibles;
+
     @ManyToOne
     @JoinColumn(name = "tournoiSuisse_id")
     private TournoiSuisse tournoiSuisse;

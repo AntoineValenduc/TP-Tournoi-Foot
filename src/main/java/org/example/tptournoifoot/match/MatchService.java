@@ -47,7 +47,9 @@ public class MatchService {
     }
 
     // PUT (update) le match
-    public Match updateMatch(Match match) {
+    public Match updateMatch(Match match,Integer id) {
+        match.setId(id);
+        this.findMatchById(id);
         return matchRepository.save(match);
     }
     public List<Match> MatchsByDate(LocalDate date) {

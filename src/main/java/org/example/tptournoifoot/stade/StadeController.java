@@ -63,7 +63,7 @@ public class StadeController {
         if (reservationReussie) {
             return new ResponseEntity<>("Réservation réussie.", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Impossible de réserver. Pas de places disponibles ou stade introuvable.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Impossible de réserver. Une erreur est survenue, le stade est introuvable ou il n'y a pas de places disponible", HttpStatus.BAD_REQUEST);
         }
     }
 }

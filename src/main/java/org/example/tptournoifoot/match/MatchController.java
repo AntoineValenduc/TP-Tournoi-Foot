@@ -62,8 +62,9 @@ public class MatchController {
 
     //PUT (update) match
     @PutMapping
-    public Match updateMatch(@RequestBody Match match){
-        return matchService.updateMatch(match);
+    public Match updateMatch(@RequestBody Match match, @PathVariable Integer id){
+        match.setId(id);
+        return matchService.updateMatch(match,id);
     }
 
     //POST

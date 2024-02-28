@@ -33,6 +33,8 @@ public class Stade {
     @Column
     private int capacite;
 
+    private int placesDispo;
+
     @OneToMany(mappedBy = "stade")
     private List<Match> matchs = new ArrayList<>();
 }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.tptournoifoot.match.Match;
+import org.example.tptournoifoot.stade.Stade;
 import org.example.tptournoifoot.supporter.Supporter;
 
 @Entity
@@ -33,6 +34,8 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "match_id")
     private Match match;
+
+    private Stade stade;
 
     @ManyToOne
     @JoinColumn(name = "supporter_id")
