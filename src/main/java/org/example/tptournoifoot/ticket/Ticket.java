@@ -14,9 +14,16 @@ import org.example.tptournoifoot.supporter.Supporter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ticket {
+    @Setter
+    @Getter
     @Id
     @GeneratedValue
     private Integer id;
+
+    @Setter
+    @Getter
+    @Column
+    private int nombreTickets;
 
     @Column(name = "type")
     private String type;
@@ -29,6 +36,9 @@ public class Ticket {
 
     @Column(name = "prix")
     private double prix;
+
+    @Column(name = "categorie")
+    private String categorie;
 
     @ManyToOne
     @JoinColumn(name = "match_id")
