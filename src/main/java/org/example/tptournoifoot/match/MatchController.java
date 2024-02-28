@@ -71,15 +71,15 @@ public class MatchController {
     public Match saveMatch(@RequestBody Match match){
         return matchService.saveMatch(match);
     }
-    @GetMapping("/matchs")
+    @GetMapping
     public List<Match>MatchsByDate(@RequestParam("date") LocalDate date) {
         return matchService.MatchsByDate(date);
     }
 
-    @PostMapping("/matchs")
+    @PostMapping
     public Match creerMatch(
             @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam("id") Integer id) {
+            @RequestParam("stade_id") Integer id) {
         return matchService.creerMatch(date, id);
     }
 }
