@@ -15,7 +15,7 @@ import java.util.List;
 public class MatchDto {
 
     private Integer id;
-    private LocalDate dateHoraire;
+    private LocalDate date;
     private String resultat;
     private String duree;
     private ArbitreDto arbitreDto;

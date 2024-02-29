@@ -29,7 +29,7 @@ public class Match {
     private Integer id;
 
     @Column
-    private LocalDate dateHoraire;
+    private LocalDate date;
 
     @Column
     private String resultat;

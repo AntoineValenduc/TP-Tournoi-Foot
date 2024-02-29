@@ -99,7 +99,7 @@ public class SystemeSuisse {
 
     private MatchDto creationMatch(int i, List<ArbitreDto> listArbitre, List<StadeDto> listStade, List<EquipeDto> listEquipe) {
         MatchDto match = new MatchDto();
-        match.setDateHoraire(LocalDate.now().plusDays(i));
+        match.setDate(LocalDate.now().plusDays(i));
         match.setDuree("90");
         match.setArbitreDto(listArbitre.get(random.nextInt(listArbitre.size())));
         match.setStadeDto(listStade.get(random.nextInt(listStade.size())));

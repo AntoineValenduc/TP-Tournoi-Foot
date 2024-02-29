@@ -29,7 +29,7 @@ public class MatchController {
         MatchDto matchDto = new MatchDto();
 
         matchDto.setId(match.getId());
-        matchDto.setDateHoraire(match.getDateHoraire());
+        matchDto.setDate(match.getDate());
         matchDto.setResultat(match.getResultat());
         // besoin mapstruct de l'arbitre pour continuer :)
         // besoin mapstruct du stade pour continuer :)
@@ -49,8 +49,9 @@ public class MatchController {
 
     }
 
-    @GetMapping
-    public List<Match>MatchsByDate(@RequestParam("date") LocalDate date) {
+    //GET matchs by date
+    @GetMapping("/byDate")
+    public List<Match> matchsByDate(@RequestParam("date") LocalDate date) {
         return matchService.MatchsByDate(date);
     }
 
