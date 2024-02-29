@@ -37,7 +37,7 @@ public class Match {
     @Column
     private int placesDisponible;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "arbitre_id")
     private Arbitre arbitre;
 

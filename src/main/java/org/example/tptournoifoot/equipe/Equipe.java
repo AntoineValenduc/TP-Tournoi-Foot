@@ -18,7 +18,6 @@ import java.util.List;
 @Setter
 @ToString
 @Table(name ="equipe")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Equipe {
 
     @Id

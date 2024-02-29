@@ -23,18 +23,16 @@ public class MatchService {
 
     // Sauvegarde
     public Match saveMatch(Match match) {
+
         return matchRepository.save(match);
     }
 
     //GET by ID
     public Match findMatchById(Integer id) {
-        return matchRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND,
-                        "Match non trouvé"
-                )
-        );
+        return matchRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Match non trouvé"));
     }
+
 
     // DELETE match by ID
     public void deleteMatchById(Integer id) {
