@@ -17,8 +17,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-property = "id")
 public class Stade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

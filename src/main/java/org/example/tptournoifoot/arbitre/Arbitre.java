@@ -27,6 +27,6 @@ public class Arbitre {
     @Column
     private String prenom;
 
-    @OneToOne(mappedBy = "arbitre")
+    @ManyToOne
     private Match match;
 }
