@@ -41,3 +41,4 @@ Avec un système de réservation de tickets pour les matchs, ainsi que de paris.
 - Réserver un ticket à partir du match
 - Faire un pari sur la réussite d'une équipe lors d'un match 
 - Système de quotation des équipes pour définir la valeur du pari
+![MicrosoftTeams-image (1).png](..%2F..%2FDownloads%2FMicrosoftTeams-image%20%281%29.png)
