@@ -6,6 +6,8 @@ import org.example.tptournoifoot.match.MatchService;
 
 import org.example.tptournoifoot.stade.Stade;
 import org.example.tptournoifoot.stade.StadeService;
+import org.example.tptournoifoot.supporter.Supporter;
+import org.example.tptournoifoot.supporter.SupporterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,66 +21,34 @@ public class TicketService {
 
     private final MatchService matchService;
     private final StadeService stadeService;
+    private final SupporterService supporterService;
 
 
-    public TicketService(TicketRepository ticketRepository, StadeService stadeService, MatchService matchService) {
+    public TicketService(TicketRepository ticketRepository, StadeService stadeService, MatchService matchService, SupporterService supporterService) {
         this.ticketRepository = ticketRepository;
         this.matchService = matchService;
         this.stadeService = stadeService;
+        this.supporterService = supporterService;
     }
 
-    public Ticket acheterTickets(Integer nombreTickets, String categorie) {
-        Stade stade = stadeService.findByNomAndVille("Arena", "Paris");
 
-        if (stade != null) {
-            int capaciteRestante = stade.getCapaciteTotal()- stadeService.getCapaciteUtilisee();
-            int capaciteMaxParCategorie = determineCapaciteMaxParCategorie(categorie);
+    public Ticket acheterTickets(TicketAchatDto ticketAchatDto) {
+        Ticket ticket = new Ticket();
 
-            if (nombreTickets <= capaciteRestante && nombreTickets <= 50000 && nombreTickets <= capaciteMaxParCategorie) {
-                Ticket ticket = new Ticket();
-                ticket.setNombreTickets(nombreTickets);
-                ticket.setCategorie(categorie);
+        ticket.setNumero(ticketAchatDto.getNumero());
+        ticket.setNumeroRange(ticketAchatDto.getNumeroRange());
+        ticket.setPrix(ticketAchatDto.getPrix());
 
-                double prix = determinePriceByCategory(categorie);
-                ticket.setPrix(prix);
-                Ticket ticketAchete = ticketRepository.save(ticket);
-                stadeService.updateCapaciteUtilisee();
 
-                return ticketAchete;
-            } else {
-                throw new IllegalArgumentException("Nombre de tickets demandés supérieur à la capacité disponible du stade, dépassement de la capacité maximale, ou dépassement du nombre maximal de tickets par catégorie.");
-            }
-        } else {
-            throw new RuntimeException("Stade non trouvé.");
-        }
-    }
-    public double determinePriceByCategory(String categorie) {
-        switch (categorie) {
-            case "VIP":
-                return 200.0;
-            case "A":
-                return 100.0;
-            case "B":
-                return 80.0;
-            case "C":
-                return 60.0;
-            default:
-                throw new IllegalArgumentException("Invalid ticket category.");
-        }
-    }
-    private int determineCapaciteMaxParCategorie(String categorie) {
-        switch (categorie) {
-            case "VIP":
-                return 5000; // maximum de 5000 tickets VIP
-            case "A":
-                return 10000; // maximum de 10000 tickets de catégorie A
-            case "B":
-                return 20000; // maximum de 15000 tickets de catégorie B
-            case "C":
-                return 15000; // maximum de 20000 tickets de catégorie C
-            default:
-                throw new IllegalArgumentException("Catégorie de ticket invalide.");
-        }
+        Match match = matchService.findMatchById(ticketAchatDto.getMatchAchatTicketDto().getId());
+        Supporter supporter = supporterService.findSupporterById(ticketAchatDto.getSupporterAvecNomEtPrenomDto().getId());
+        Stade stade = stadeService.findById(ticketAchatDto.getStadeSimpleTicketDto().getId());
+
+        ticket.setMatch(match);
+        ticket.setSupporter(supporter);
+        ticket.setStade(stade);
+
+        return save(ticket);
     }
 
     public List<Ticket> findAllTicket() {

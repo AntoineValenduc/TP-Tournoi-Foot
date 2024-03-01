@@ -59,13 +59,9 @@ public class TicketController {
 
     }
 
-    @PostMapping("/purchase")
-    public ResponseEntity<Ticket> acheterTickets(@RequestParam Integer nombreTickets,
-                                                 @RequestParam String categorie) {
-        Ticket ticketAchete = ticketService.acheterTickets(nombreTickets, categorie);
-
-        setCategorieAndPrice(ticketAchete, nombreTickets);
-
+    @PostMapping("/acheter")
+    public ResponseEntity<Ticket> acheterTicket(@RequestBody TicketAchatDto ticketAchatDto) {
+        Ticket ticketAchete = ticketService.acheterTickets(ticketAchatDto);
         return new ResponseEntity<>(ticketAchete, HttpStatus.CREATED);
     }
 
